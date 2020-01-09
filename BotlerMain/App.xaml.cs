@@ -8,11 +8,11 @@ namespace BotlerMain
 {
     public partial class App : Application
     {
-
-        public App()
+        public static string DB_PATH = string.Empty;
+        public App(string DB_Path)
         {
             InitializeComponent();
-
+            DB_PATH = DB_Path;
             DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
