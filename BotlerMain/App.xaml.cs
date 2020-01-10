@@ -12,7 +12,7 @@ namespace BotlerMain
         public App(string DB_Path)
         {
             InitializeComponent();
-
+            DB_PATH = DB_Path;
             DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
             DB_PATH = DB_Path;
