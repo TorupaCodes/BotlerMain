@@ -52,9 +52,10 @@ namespace BotlerMain.Views
             return boolError;
         }
 
-        private void Cancel_Clicked(object sender, EventArgs e)
+        private async void Cancel_Clicked(object sender, EventArgs e)
         {
-            Navigation.PopModalAsync();
+            await Navigation.PushAsync(new GroceryPage());
+
         }
 
         private void Add_Clicked(object sender, EventArgs e)
@@ -97,11 +98,6 @@ namespace BotlerMain.Views
             {
                 Console.WriteLine("Exception has been caught! " + ex);
             }
-        }
-
-        private void MovetoVoorraad_Clicked(object sender, EventArgs e)
-        {
-
         }
     }
 }
