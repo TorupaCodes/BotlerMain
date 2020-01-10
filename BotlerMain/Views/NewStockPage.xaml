@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="BotlerMain.Views.NewStockPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Ga terug!" Clicked="Cancel_Clicked" />
+        <ToolbarItem Text="Voeg toe!" Clicked="Add_Clicked" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="15">
+            <Picker x:Name="PickerStock" Title="Producten">
+                <Picker.Items>
+                    <x:String>Appels</x:String>
+                    <x:String>Boter</x:String>
+                    <x:String>Brood</x:String>
+                    <x:String>Ei</x:String>
+                    <x:String>Friet</x:String>
+                    <x:String>Fruit</x:String>
+                    <x:String>Kaas</x:String>
+                    <x:String>Koek</x:String>
+                    <x:String>Macaroni</x:String>
+                    <x:String>Melk</x:String>
+                    <x:String>Pasta</x:String>
+                    <x:String>Appelsap</x:String>
+                    <x:String>Pepernoten</x:String>
+                </Picker.Items>
+            </Picker>
+            <Entry x:Name="EntryAmount" Placeholder="Aantal" Keyboard="Numeric">
+            </Entry>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

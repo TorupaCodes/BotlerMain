@@ -38,7 +38,7 @@
             <ShellContent ContentTemplate="{DataTemplate local:GroceryPage}" />
         </Tab>
         <Tab Title="Voorraad" Icon="ReceptenLijst.png">
-            <ShellContent ContentTemplate="{DataTemplate local:AboutPage}" />
+            <ShellContent ContentTemplate="{DataTemplate local:Stockpage}" />
         </Tab>
     </TabBar>
 
