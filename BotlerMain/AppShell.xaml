@@ -35,7 +35,7 @@
             <ShellContent ContentTemplate="{DataTemplate local:MyRecipePage}" />
         </Tab>
         <Tab Title="Boodschappenlijst" Icon="BoodschappenLijst.png">
-            <ShellContent ContentTemplate="{DataTemplate local:ItemsPage}" />
+            <ShellContent ContentTemplate="{DataTemplate local:GroceryPage}" />
         </Tab>
         <Tab Title="Voorraad" Icon="ReceptenLijst.png">
             <ShellContent ContentTemplate="{DataTemplate local:AboutPage}" />
