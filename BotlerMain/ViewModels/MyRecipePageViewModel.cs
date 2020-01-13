@@ -3,20 +3,25 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace BotlerMain.ViewModel
 {
-    public class MyRecipePageViewModel
+     class MyRecipePageViewModel
+
     {
+        public ICommand AddRecipeCommand => new Command(AddNewRecipe);
         public ObservableCollection<MyRecipeModel> FoodList { get; set; }
 
+        public string AddRecipe { get; set; }
         public MyRecipePageViewModel()
         {
 
 
             FoodList = new ObservableCollection<MyRecipeModel>();
 
-            FoodList.Add(new MyRecipeModel { Name = "Lasagne", Image = "https://images.smulweb.nl/recepten/201512/1437768/high_res/lasagne.jpg", Detail = "Italiaanse lasagne" });
+            FoodList.Add(new MyRecipeModel { Name = "Lasagne", Image = "https://images.smulweb.nl/recepten/201512/1437768/high_res/lasagne.jpg", Detail = "Italiaanse lasagne", Ingredients = "", Bereiding = "" });
 
             FoodList.Add(new MyRecipeModel { Name = "Spaghetti Bolognese", Image = "https://static.ah.nl/static/recepten/img_RAM_PRD121467_890x594_JPG.jpg", Detail = "Italiaanse Spaghetti" });
 
@@ -32,9 +37,15 @@ namespace BotlerMain.ViewModel
 
             FoodList.Add(new MyRecipeModel { Name = "Roerei met Bacon", Image = "https://i1.wp.com/kitchenista.nl/wp-content/uploads/2016/03/roerei-met-bacon.jpg?resize=600%2C320&ssl=1", Detail = "Heerlijk stevig ontbijt" });
 
-
+            
 
         }
+
+        public void AddNewRecipe()
+        {
+        FoodList.Add(AddRecipe);
+        }
+           
 
 
     }

@@ -6,6 +6,12 @@
              mc:Ignorable="d"
              x:Class="BotlerMain.Views.MyRecipePage"
              Title="Recepten">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Verwijder" Clicked="Verwijder_Clicked"></ToolbarItem>
+        <ToolbarItem Text="Voeg toe" Clicked="Add_Clicked"/>
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
         <ListView ItemsSource="{Binding FoodList}"
                    HasUnevenRows="true"

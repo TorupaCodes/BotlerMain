@@ -22,7 +22,7 @@ namespace BotlerMain.Views
         private async void OnItemSelected(Object sender, ItemTappedEventArgs e)
         {
             var mydetails = e.Item as MyRecipeModel;
-            await Navigation.PushAsync(new MyRecipePageDetail(mydetails.Name, mydetails.Ingredients, mydetails.Image));
+            await Navigation.PushAsync(new MyRecipePageDetail(mydetails.Name, mydetails.Ingredients, mydetails.Bereiding, mydetails.Image));
 
         }
     }
