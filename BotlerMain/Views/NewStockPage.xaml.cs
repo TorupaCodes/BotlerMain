@@ -16,7 +16,14 @@ namespace BotlerMain.Views
         {
             InitializeComponent();
         }
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            Console.WriteLine("Stockpage is verlaten");
+            var vUpdatedPage = new Stockpage(); Navigation.InsertPageBefore(vUpdatedPage, this); Navigation.PopAsync();
+            Navigation.PopAsync();
 
+        }
         private bool CrashCheck()
         {
             bool boolError = false;
@@ -55,7 +62,8 @@ namespace BotlerMain.Views
         }
         private async void Cancel_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Stockpage());
+            var vUpdatedPage = new GroceryPage(); Navigation.InsertPageBefore(vUpdatedPage, this); await Navigation.PopAsync();
+            await Navigation.PopModalAsync();
 
         }
 
@@ -68,7 +76,7 @@ namespace BotlerMain.Views
                     Stock stock = new Stock()
                     {
                         Name = (String)PickerStock.SelectedItem,
-                        Number = (Int32)(Convert.ToInt32(EntryAmount.Text)),
+                        Number = (Int32)(Convert.ToInt32(EntryAmount.Text))
 
                     };
                     using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection((App.DB_PATH)))
@@ -77,7 +85,7 @@ namespace BotlerMain.Views
 
                         var NumberOfRows = connection.Insert(stock);
 
-                        string Aantalstring = stock.Name + " is " + Convert.ToString(EntryAmount.Text) + " keer toegevoegd aan het boodschappenlijstje!";
+                        string Aantalstring = stock.Name + " is " + Convert.ToString(EntryAmount.Text) + " keer toegevoegd aan de voorraad!!";
                         // Als dus numberofrows groter is dan 0 is er iets toegevoegd. (Dus success)
                         if (NumberOfRows > 0)
                             DisplayAlert("Gedaan!", Aantalstring, "Terug");

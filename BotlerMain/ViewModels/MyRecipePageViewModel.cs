@@ -8,6 +8,7 @@ namespace BotlerMain.ViewModel
 {
     public class MyRecipePageViewModel
     {
+
         public ObservableCollection<MyRecipeModel> FoodList { get; set; }
 
         public MyRecipePageViewModel()

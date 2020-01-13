@@ -15,7 +15,6 @@ namespace BotlerMain
             DB_PATH = DB_Path;
             DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
-            DB_PATH = DB_Path;
         }
 
         protected override void OnStart()

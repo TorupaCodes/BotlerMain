@@ -4,12 +4,14 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="BotlerMain.Views.NewGroceryPage">
+             x:Class="BotlerMain.Views.NewGroceryPage"
+             Title="Nieuwe Boodschap!">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Ga terug!" Clicked="Cancel_Clicked" />
         <ToolbarItem Text="Voeg toe!" Clicked="Add_Clicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
+
+        
         <StackLayout Spacing="20" Padding="15">
             <Picker x:Name="PickerGrocery" Title="Boodschappen">
                 <Picker.Items>
