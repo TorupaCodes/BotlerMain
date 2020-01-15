@@ -25,5 +25,9 @@ namespace BotlerMain.Views
             await Navigation.PushAsync(new MyRecipePageDetail(mydetails.Name, mydetails.Ingredients, mydetails.Bereiding, mydetails.Image));
 
         }
+        private void Add_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }

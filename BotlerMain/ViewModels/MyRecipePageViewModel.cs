@@ -43,7 +43,7 @@ namespace BotlerMain.ViewModel
 
         public void AddNewRecipe()
         {
-        FoodList.Add(AddRecipe);
+        //FoodList.Add(AddRecipe);
         }
            
 

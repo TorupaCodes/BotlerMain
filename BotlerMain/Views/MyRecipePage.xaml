@@ -8,7 +8,6 @@
              Title="Recepten">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Verwijder" Clicked="Verwijder_Clicked"></ToolbarItem>
         <ToolbarItem Text="Voeg toe" Clicked="Add_Clicked"/>
     </ContentPage.ToolbarItems>
     
