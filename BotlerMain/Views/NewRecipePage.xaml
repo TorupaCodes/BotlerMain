@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="BotlerMain.Views.NewRecipePage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Voeg toe" Clicked="Save_Clicked" Command="{Binding AddRecipeCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="15">
+            <Label Text="Recept" FontSize="Medium" />
+            <Entry Text="{Binding Name}" d:Text="" FontSize="Small" Placeholder="Recept naam" x:Name="EntryRecipe"/>
+            <Label Text="Bereidingswijze" FontSize="Medium" />
+            <Entry Text="{Binding Detail}" d:Text="" FontSize="Small" Margin="0" Placeholder="Recept Details" x:Name="EntryDetail"/>
+            <Label Text="Bereidingswijze" FontSize="Medium" />
+            <Entry Text="{Binding Ingredients}" d:Text="" FontSize="Small" Margin="0" Placeholder="Voeg Ingrediënten toe" x:Name="EntryIngredients"/>
+            <Label Text="Bereidingswijze" FontSize="Medium" />
+            <Entry Text="{Binding Bereiding}" d:Text="" FontSize="Small" Margin="0" Placeholder="Voeg bereidingswijze toe" x:Name="EntryBereiding"/>
+            <Button Text="Voeg recept toe" Clicked="AddRecepipe_Clicked"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

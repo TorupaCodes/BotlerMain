@@ -7,12 +7,13 @@ namespace BotlerMain.Views
 {
     public partial class MyRecipePageDetail : ContentPage
     {
-        public MyRecipePageDetail(string Name, string Ingredients, string source)
+        public MyRecipePageDetail(string Name, string Ingredients, string source /*string Bereiding*/)
         {
             InitializeComponent();
 
             MyItemNameShow.Text = Name;
             MyIngrediantItemShow.Text = Ingredients;
+            //MyBereidingItem.Text = Bereiding;
             MyImageCall.Source = new UriImageSource()
 
             {

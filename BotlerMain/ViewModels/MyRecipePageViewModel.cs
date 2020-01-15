@@ -8,8 +8,10 @@ namespace BotlerMain.ViewModel
 {
     public class MyRecipePageViewModel
     {
-
+        // public ICommand AddRecipeCommand => new Command(AddNewRecipe);
         public ObservableCollection<MyRecipeModel> FoodList { get; set; }
+
+        //public string AddRecipe { get; set; }
 
         public MyRecipePageViewModel()
         {
@@ -36,7 +38,7 @@ namespace BotlerMain.ViewModel
 
 
         }
-
+        
 
     }
 }
