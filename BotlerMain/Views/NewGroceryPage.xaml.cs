@@ -16,6 +16,14 @@ namespace BotlerMain.Views
         {
             InitializeComponent();
         }
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            Console.WriteLine("NewGroceryPage is verlaten");
+            var vUpdatedPage = new GroceryPage(); Navigation.InsertPageBefore(vUpdatedPage, this); Navigation.PopAsync();
+            Navigation.PopAsync();
+
+        }
         private bool CrashCheck()
         {
             bool boolError = false;
@@ -51,10 +59,11 @@ namespace BotlerMain.Views
             }
             return boolError;
         }
-
         private async void Cancel_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new GroceryPage());
+            //var vUpdatedPage = new GroceryPage(); Navigation.InsertPageBefore(vUpdatedPage, this); await Navigation.PopAsync();
+            //await Navigation.PopModalAsync();
+            //await Navigation.PopAsync();
 
         }
 
@@ -67,9 +76,7 @@ namespace BotlerMain.Views
                     Grocery grocery = new Grocery()
 
                     {
-                        // Zet de naam van de binding 'Name' die gedefineeërd is in de MainPage.
                         Name = (String)PickerGrocery.SelectedItem,
-                        // Zet de Nummer van de binding 'Name' die gedefineeërd is in de MainPage.
                         Number = (Int32)(Convert.ToInt32(EntryAmount.Text))
                     };
                     using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection((App.DB_PATH)))

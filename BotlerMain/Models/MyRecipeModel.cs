@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using BotlerMain;
+
 
 namespace BotlerMain.Models
 {

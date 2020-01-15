@@ -4,9 +4,9 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="BotlerMain.Views.NewStockPage">
+             x:Class="BotlerMain.Views.NewStockPage"
+             Title="Nieuw product">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Ga terug!" Clicked="Cancel_Clicked" />
         <ToolbarItem Text="Voeg toe!" Clicked="Add_Clicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>

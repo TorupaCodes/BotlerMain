@@ -34,9 +34,11 @@ namespace BotlerMain.Views
             }
         }
 
+
         private async void Add_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new NewStockPage()));
+            //await Navigation.PushModalAsync(new NavigationPage(new NewStockPage()));
+            await Navigation.PushAsync(new NewStockPage());
         }
 
         private void Delete_Clicked(object sender, EventArgs e)
