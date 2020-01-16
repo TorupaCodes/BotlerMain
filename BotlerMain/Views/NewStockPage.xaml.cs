@@ -19,7 +19,6 @@ namespace BotlerMain.Views
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            Console.WriteLine("Stockpage is verlaten");
             var vUpdatedPage = new Stockpage(); Navigation.InsertPageBefore(vUpdatedPage, this); Navigation.PopAsync();
             Navigation.PopAsync();
 
@@ -64,7 +63,6 @@ namespace BotlerMain.Views
         {
             var vUpdatedPage = new GroceryPage(); Navigation.InsertPageBefore(vUpdatedPage, this); await Navigation.PopAsync();
             await Navigation.PopModalAsync();
-
         }
 
         private void Add_Clicked(object sender, EventArgs e)
@@ -73,28 +71,14 @@ namespace BotlerMain.Views
             {
                 if(!CrashCheck())
                 {
-                    Stock stock = new Stock()
-                    {
-                        Name = (String)PickerStock.SelectedItem,
-                        Number = (Int32)(Convert.ToInt32(EntryAmount.Text))
-
-                    };
-                    using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection((App.DB_PATH)))
-                    {
-                        connection.CreateTable<Stock>();
-
-                        var NumberOfRows = connection.Insert(stock);
-
-                        string Aantalstring = stock.Name + " is " + Convert.ToString(EntryAmount.Text) + " keer toegevoegd aan de voorraad!!";
-                        // Als dus numberofrows groter is dan 0 is er iets toegevoegd. (Dus success)
-                        if (NumberOfRows > 0)
-                            DisplayAlert("Gedaan!", Aantalstring, "Terug");
-                        else
-                            DisplayAlert("Fout", "De boodschap is niet toegevoegd.", "Terug");
-                    }
+                    Stock stock = new Stock();
+                    stock.Add((String)PickerStock.SelectedItem, Convert.ToInt32(EntryAmount.Text));
+                    string AlertString = PickerStock.SelectedItem + " is " + EntryAmount.Text + " keer  toegevoegd aan de boodschappenlijst!";
+                    DisplayAlert("Success", AlertString, "Terug");
                 }
             } catch (Exception ex) {
                 Console.WriteLine("error op gevange in NewStockPage " + ex);
+                DisplayAlert("Oops", "Er is iets fout gegaan, probeer het nog eens.", "Terug");
             }
         }
             

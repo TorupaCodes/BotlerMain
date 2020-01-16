@@ -51,10 +51,7 @@ namespace BotlerMain.Views
 
         private async void Add_Clicked(object sender, EventArgs e)
         {
-            //await Navigation.PushAsync(new NavigationPage(NewGroceryPage()));
-            //await Navigation.PushModalAsync(new NewGroceryPage());
             await Navigation.PushAsync(new NewGroceryPage());
-            //await Navigation.PushModalAsync(new NavigationPage(new NewGroceryPage()));
         }
 
         private void Verwijder_Clicked(object sender, EventArgs e)
@@ -62,40 +59,20 @@ namespace BotlerMain.Views
             // Het geselecteerde item in de listview.
             var Geselecteerd = (Grocery)GroceryListView.SelectedItem;
             // Als er niks geselecteerd is en persoon drukt op de knop, doe niks.
-            if (Geselecteerd == null)
-            {
-                return;
-            }
-
+            if (Geselecteerd == null) return;
+            Grocery grocery = new Grocery();
+            grocery.Delete(Geselecteerd.Id);
             DisplayAlert("Succes!", Convert.ToString(Geselecteerd.Name) + " is verwijderd!", "Breng me terug");
-            using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection((App.DB_PATH)))
-                connection.Delete<Grocery>(Geselecteerd.Id);
             OnAppearing();
         }
         private void MovetoVoorraad_Clicked(object sender, EventArgs e)
         {
             var Geselecteerd = (Grocery)GroceryListView.SelectedItem;
-            // Als er niks geselecteerd is en persoon drukt op de knop, doe niks.
-            if (Geselecteerd == null)
-            {
-                return;
-            }
-            Stock stock = new Stock()
-            {
-                Name = (String)Geselecteerd.Name,
-                Number = (Int32)(Convert.ToInt32(Geselecteerd.Number))
-
-            };
-            using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection((App.DB_PATH)))
-            {
-                connection.CreateTable<Stock>();
-                connection.Insert(stock);
-            }
+            if (Geselecteerd == null) return;
+            Grocery grocery = new Grocery();
+            grocery.Move(Geselecteerd.Id, Geselecteerd.Name, Geselecteerd.Number);
             DisplayAlert("Succes!", Convert.ToString(Geselecteerd.Name) + " is verplaatst", "Breng me terug");
-            using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection((App.DB_PATH)))
-                connection.Delete<Grocery>(Geselecteerd.Id);
             OnAppearing();
-
         }
     }
 }

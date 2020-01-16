@@ -29,6 +29,6 @@
                     VerticalOptions="EndAndExpand">
 
             </Button>
-            </StackLayout>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
