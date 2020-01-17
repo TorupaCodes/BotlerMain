@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -29,25 +29,21 @@ namespace BotlerMain.Views
                 GroceryListView.ItemsSource = Grocery;
                 //labCount.Text = Convert.ToString("Er zijn " + Boodschappen.Count + " boodschappen gevonden in het lijstje");
 
-
-
             }
+            Accelerometer.ShakeDetected += Accelerometer_ShakeDetected;
+            Accelerometer.Start(SensorSpeed.Game);
         }
-       /* protected override void OnDisappearing()
+        protected override void OnDisappearing()
         {
             base.OnDisappearing();
-
-            using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DB_PATH))
-            {
-                conn.CreateTable<Grocery>();
-                var Grocery = conn.Table<Grocery>().ToList();
-                GroceryListView.ItemsSource = Grocery;
-                //labCount.Text = Convert.ToString("Er zijn " + Boodschappen.Count + " boodschappen gevonden in het lijstje");
-
-
-
-            }
-        } */
+            Accelerometer.ShakeDetected -= Accelerometer_ShakeDetected;
+            Accelerometer.Stop();
+        }
+        private void Accelerometer_ShakeDetected(object sender, EventArgs e)
+        {
+            DisplayAlert("Veel speel plezier!", "Sloop de botler niet!", "Oké!");
+            Navigation.PushAsync(new ControllerPage());
+        }
 
         private async void Add_Clicked(object sender, EventArgs e)
         {
