@@ -13,7 +13,8 @@
         <ListView ItemsSource="{Binding FoodList}"
                    HasUnevenRows="true"
                    SeparatorVisibility="None"
-                   ItemTapped="OnItemSelected">
+                   ItemTapped="OnItemSelected"
+                   x:Name="RecipeList">
 
             <ListView.ItemTemplate>
                 <DataTemplate>
