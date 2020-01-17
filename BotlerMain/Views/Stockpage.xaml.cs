@@ -28,9 +28,6 @@ namespace BotlerMain.Views
                 var Stock = conn.Table<Stock>().ToList();
                 StockListView.ItemsSource = Stock;
                 //labCount.Text = Convert.ToString("Er zijn " + Boodschappen.Count + " boodschappen gevonden in het lijstje");
-
-
-
             }
         }
 
@@ -46,13 +43,10 @@ namespace BotlerMain.Views
             // Het geselecteerde item in de listview.
             var Geselecteerd = (Stock)StockListView.SelectedItem;
             // Als er niks geselecteerd is en persoon drukt op de knop, doe niks.
-            if (Geselecteerd == null)
-            {
-                return;
-            }
+            if (Geselecteerd == null) return;
+            Stock stock = new Stock();
+            stock.Delete(Geselecteerd.Id);
             DisplayAlert("Succes!", Convert.ToString(Geselecteerd.Name) + " is verwijderd!", "Breng me terug");
-            using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection((App.DB_PATH)))
-                connection.Delete<Stock>(Geselecteerd.Id);
             OnAppearing();
         }
     }

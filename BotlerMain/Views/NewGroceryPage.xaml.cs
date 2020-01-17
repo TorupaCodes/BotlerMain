@@ -59,13 +59,6 @@ namespace BotlerMain.Views
             }
             return boolError;
         }
-        private async void Cancel_Clicked(object sender, EventArgs e)
-        {
-            //var vUpdatedPage = new GroceryPage(); Navigation.InsertPageBefore(vUpdatedPage, this); await Navigation.PopAsync();
-            //await Navigation.PopModalAsync();
-            //await Navigation.PopAsync();
-
-        }
 
         private void Add_Clicked(object sender, EventArgs e)
         {
@@ -73,37 +66,16 @@ namespace BotlerMain.Views
             {
                 if (!CrashCheck())
                 {
-                    Grocery grocery = new Grocery()
-
-                    {
-                        Name = (String)PickerGrocery.SelectedItem,
-                        Number = (Int32)(Convert.ToInt32(EntryAmount.Text))
-                    };
-                    using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection((App.DB_PATH)))
-                    {
-
-                        // Maak een nieuwe table aan als deze nog niet aangemaakt is.
-                        connection.CreateTable<Grocery>();
-                        // Een variable voor het toevoegen van een  nieuwe boodschap. 
-                        var numberOfRows = connection.Insert(grocery);
-                        // Een string die de naam van de boodschap en het aantal toont. (Temporary fix)
-                        string Aantalstring = grocery.Name + " is " + Convert.ToString(EntryAmount.Text) + " keer toegevoegd aan het boodschappenlijstje!";
-                        // Als dus numberofrows groter is dan 0 is er iets toegevoegd. (Dus success)
-                        if (numberOfRows > 0)
-                            DisplayAlert("Gedaan!", Aantalstring, "Terug");
-                        else
-                            DisplayAlert("Fout", "De boodschap is niet toegevoegd.", "Terug");
-
-
-                        // Er kan maar een connectie tergelijke tijd zijn!
-                        // connection.Dispose(); // Dit zorgt er voor dat de connectie weg gaat!!
-                        // Maar de using statement doet dat al voor ons.
-                    }
+                    Grocery grocery = new Grocery();
+                    grocery.Add((String)PickerGrocery.SelectedItem, Convert.ToInt32(EntryAmount.Text));
+                    string AlertString = PickerGrocery.SelectedItem + " is " + EntryAmount.Text + " keer  toegevoegd aan de boodschappenlijst!";
+                    DisplayAlert("Success", AlertString, "Terug");
                 }
             }
-            catch (Exception ex)
+            catch (Exception err)
             {
-                Console.WriteLine("Exception has been caught! " + ex);
+                Console.WriteLine("Error is opgevanggen in NewGroceryPage!" + err);
+                DisplayAlert("Oops", "Er is iets fout gegaan, probeer het nog eens.", "Terug");
             }
         }
     }
