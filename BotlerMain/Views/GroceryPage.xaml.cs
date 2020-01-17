@@ -15,7 +15,6 @@ namespace BotlerMain.Views
         public GroceryPage()
         {
             InitializeComponent();
-
         }
         protected override void OnAppearing()
         {
@@ -30,8 +29,17 @@ namespace BotlerMain.Views
                 //labCount.Text = Convert.ToString("Er zijn " + Boodschappen.Count + " boodschappen gevonden in het lijstje");
 
             }
+
             Accelerometer.ShakeDetected += Accelerometer_ShakeDetected;
-            Accelerometer.Start(SensorSpeed.Game);
+            try
+            {
+                Accelerometer.Start(SensorSpeed.Game);
+
+            } 
+            catch (Exception err)
+            {
+
+            }
         }
         protected override void OnDisappearing()
         {
