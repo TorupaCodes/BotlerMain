@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using BotlerMain.Services;
+//using BotlerMain.Services;
 using BotlerMain.Views;
 
 namespace BotlerMain
@@ -13,7 +13,7 @@ namespace BotlerMain
         {
             InitializeComponent();
             DB_PATH = DB_Path;
-            DependencyService.Register<MockDataStore>();
+            //DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
 

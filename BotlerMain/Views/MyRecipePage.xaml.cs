@@ -18,11 +18,29 @@ namespace BotlerMain.Views
         {
             InitializeComponent();
             BindingContext = new MyRecipePageViewModel();
+
+
+        }
+        protected override void OnAppearing()
+        {
+            // Zorgt ervoor dat voordat de applicatie opstart dat de applicatie kan worden aangepast
+            base.OnAppearing();
+
+            using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DB_PATH))
+            {
+                conn.CreateTable<MyRecipeModel>();
+                var Recipe = conn.Table<MyRecipeModel>().ToList();
+                RecipeList.ItemsSource = Recipe;
+                //labCount.Text = Convert.ToString("Er zijn " + Boodschappen.Count + " boodschappen gevonden in het lijstje");
+
+
+
+            }
         }
         private async void OnItemSelected(Object sender, ItemTappedEventArgs e)
         {
             var mydetails = e.Item as MyRecipeModel;
-            await Navigation.PushAsync(new MyRecipePageDetail(mydetails.Name, mydetails.Ingredients,/* mydetails.Bereiding*/ mydetails.Image));
+            await Navigation.PushAsync(new MyRecipePageDetail(mydetails.Name, mydetails.Ingredients, mydetails.Bereiding, mydetails.Image));
 
         }
         private async void Add_Clicked(object sender, EventArgs e)
