@@ -31,7 +31,7 @@ namespace BotlerMain.Views
                 conn.CreateTable<MyRecipeModel>();
                 var Recipe = conn.Table<MyRecipeModel>().ToList();
                 RecipeList.ItemsSource = Recipe;
-                //labCount.Text = Convert.ToString("Er zijn " + Boodschappen.Count + " boodschappen gevonden in het lijstje");
+                
 
 
 
