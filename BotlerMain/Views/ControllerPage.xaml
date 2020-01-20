@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="BotlerMain.Views.ControllerPage"
+                          Title="De Botler Controller"
+                          BackgroundColor="#040f16">
+    <ContentPage.Content>
+
+        <Grid RowSpacing="1" ColumnSpacing="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0"/>
+            </Grid.ColumnDefinitions>
+
+            <Entry Text="192.168.137." Grid.Row="0" TextColor="#e5e5e5" x:Name="EntryIp"
+             FontSize="25" Grid.ColumnSpan="4" />
+            <Button Text = "Vooruit" FontSize="Large" Grid.Row="1" Grid.Column="2"
+                    Clicked="Button_Vooruit"
+                    TextColor="#e5e5e5"
+                    CornerRadius="10"
+                    BackgroundColor="#0b4f6c">
+            </Button>
+            <Button Text = "Midden" FontSize="Large" Grid.Row="2" Grid.Column="2"
+                    TextColor="#e5e5e5"
+                    Clicked="Button_Midden"
+                    BackgroundColor="#0b4f6c"
+                    CornerRadius="10"></Button>
+            <Button Text = "Links" FontSize="Large" Grid.Row="2" Grid.Column="1"
+                  Clicked="Button_Links"
+                    TextColor="#e5e5e5"
+                    CornerRadius="10"
+                    BackgroundColor="#0b4f6c"></Button>
+            <Button Text = "Rechts" FontSize="Large" Grid.Row="2" Grid.Column="3"
+                    Clicked="Button_Rechts"
+                    CornerRadius="10"
+                    TextColor="#e5e5e5"
+                    BackgroundColor="#0b4f6c"></Button>
+            <Button Text = "Achteruit" FontSize="Large" Grid.Row="3" Grid.Column="2"
+                    Clicked="Button_Achteruit"
+                    TextColor="#e5e5e5"
+                    CornerRadius="10"
+                    BackgroundColor="#0b4f6c"></Button>
+            <Button Text = "Emergency brake" FontSize="17" Grid.Row="5" Grid.Column="2"
+                    BorderColor="Black"
+                    BackgroundColor="Red"
+                    CornerRadius="10"
+                    Clicked="Button_Stoppen">
+
+            </Button>
+            <Button Text = "Start monitor" FontSize="17" Grid.Row="5" Grid.Column="1"
+                    x:Name="buttonMonitor"
+                    BorderColor="Black"
+                    BackgroundColor="#e63721"
+                    CornerRadius="10"
+                    Clicked="Button_Monitor">
+
+            </Button>
+            <Label Text="" x:Name="labelStatus" FontSize="19"
+                   TextColor="#e5e5e5"
+                   Grid.Row="4" Grid.Column="2"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"></Label>
+            <Label Text="Monitor values" x:Name="labelMonitor" FontSize="12"
+                   TextColor="#e5e5e5"
+                   Grid.Row="4" Grid.Column="1"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   ></Label>
+            <ActivityIndicator
+                Grid.Row="1" 
+                Grid.Column="3" 
+                Color="White" 
+                IsRunning="True"
+                x:Name="ActivityIndicator">
+            </ActivityIndicator>
+            <Slider Maximum="2"
+                    x:Name="SpeedSlider"
+                   ValueChanged="Slider_ValueChanged"
+                     Grid.Row="3" 
+                    Grid.Column="3" 
+                   Value="2"></Slider>
+            <Label x:Name="labelSlider"
+          Grid.Row="4" 
+                Grid.Column="3"
+                   Text="Speed Value"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"></Label>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
+    
