@@ -14,11 +14,19 @@ namespace BotlerMain.Views
             MyItemNameShow.Text = Name;
             MyIngrediantItemShow.Text = Ingredients;
             MyBereidingItem.Text = Bereiding;
-            MyImageCall.Source = new UriImageSource()
-
+            try
             {
-                Uri = new Uri(source)
-            };
+                MyImageCall.Source = new UriImageSource()
+
+                {
+                    Uri = new Uri(source)
+                };
+            } catch (Exception err)
+            {
+                Console.WriteLine(err);
+
+            }
+
 
         }
     }

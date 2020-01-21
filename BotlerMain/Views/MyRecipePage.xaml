@@ -10,6 +10,7 @@
         <ToolbarItem Text="Voeg toe" Clicked="Add_Clicked"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
+
         <ListView ItemsSource="{Binding FoodList}"
                    HasUnevenRows="true"
                    SeparatorVisibility="None"
@@ -51,7 +52,11 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        
+        
 
 
     </ContentPage.Content>
+    
+    
 </ContentPage>
