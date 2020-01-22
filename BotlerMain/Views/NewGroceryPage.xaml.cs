@@ -80,19 +80,16 @@ namespace BotlerMain.Views
             {
                 if (!CrashCheck())
                 {
-                    
+
+                    var Geselecteerd = (PickerItems)PickerGrocery.SelectedItem;
+                    Console.WriteLine(Geselecteerd.Name + "Geselecteerd name");
+
                     Grocery grocery = new Grocery();
-                    try
-                        var Geselecteerd = (PickerItems)
-                    {
-                        grocery.Add((String)TempFixLabel.Text, Convert.ToInt32(EntryAmount.Text));
-                        string AlertString = TempFixLabel.Text + " is " + EntryAmount.Text + " keer  toegevoegd aan de boodschappenlijst!";
-                        DisplayAlert("Success", AlertString, "Terug");
-                    }
-                    catch (Exception error)
-                    {
-                        Console.WriteLine("C# MACHINE BROKE" + error);
-                    }
+                    grocery.Add(Geselecteerd.Name, Convert.ToInt32(EntryAmount.Text));
+
+                    string AlertString = Geselecteerd.Name + " is " + EntryAmount.Text + " keer  toegevoegd aan de boodschappenlijst!";
+                    DisplayAlert("Success", AlertString, "Terug");
+
                 }
             }
             catch (Exception err)
@@ -123,7 +120,7 @@ namespace BotlerMain.Views
             using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection((App.DB_PATH)))
             {
                 //Console.Writeline(PickerGrocery.SelectedItem.Name);
-                connection.DropTable<PickerItems>(); 
+                connection.DropTable<PickerItems>();
                 PickerItems pickerItems = new PickerItems();
                 pickerItems.DefaultValues();
 

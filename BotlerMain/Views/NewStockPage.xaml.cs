@@ -83,10 +83,13 @@ namespace BotlerMain.Views
 
                 if(!CrashCheck())
                 {
-                    Stock stock = new Stock();
+                    var Geselecteerd = (PickerItems)PickerStock.SelectedItem;
+                    Console.WriteLine(Geselecteerd.Name + "Geselecteerd name");
 
-                    stock.Add((String)TempFixLabel.Text, Convert.ToInt32(EntryAmount.Text));
-                    string AlertString = TempFixLabel.Text + " is " + EntryAmount.Text + " keer  toegevoegd aan de boodschappenlijst!";
+                    Stock stock = new Stock();
+                    stock.Add(Geselecteerd.Name, Convert.ToInt32(EntryAmount.Text));
+
+                    string AlertString = Geselecteerd.Name + " is " + EntryAmount.Text + " keer  toegevoegd aan de boodschappenlijst!";
                     DisplayAlert("Success", AlertString, "Terug");
                 }
             } catch (Exception ex) {
