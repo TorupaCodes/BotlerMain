@@ -14,7 +14,9 @@ namespace BotlerMain
             InitializeComponent();
             DB_PATH = DB_Path;
             //DependencyService.Register<MockDataStore>();
+            //MainPage = new NavigationPage(new AppShell());
             MainPage = new AppShell();
+            //NavigationPage.SetHasBackButton(new NewGroceryPage(), false);
         }
 
         protected override void OnStart()

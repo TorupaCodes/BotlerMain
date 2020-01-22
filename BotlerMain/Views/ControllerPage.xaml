@@ -6,7 +6,8 @@
              mc:Ignorable="d"
              x:Class="BotlerMain.Views.ControllerPage"
                           Title="De Botler Controller"
-                          BackgroundColor="#040f16">
+                          BackgroundColor="#040f16"
+             >
     <ContentPage.Content>
 
         <Grid RowSpacing="1" ColumnSpacing="1" >

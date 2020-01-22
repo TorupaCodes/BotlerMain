@@ -42,6 +42,7 @@ namespace BotlerMain
                 Name = GroceryName,
                 Number = GroceryNumber
             };
+            
             using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection((App.DB_PATH)))
             {
                 connection.CreateTable<Stock>();

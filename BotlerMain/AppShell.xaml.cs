@@ -10,6 +10,7 @@ namespace BotlerMain
         public AppShell()
         {
             InitializeComponent();
+
         }
 
     }

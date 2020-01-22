@@ -30,6 +30,14 @@ namespace BotlerMain.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App(full_path));
+
+        }
+        protected override void OnStart()
+        {
+            base.OnStart();
+            PickerItems pickerItems = new PickerItems();
+            pickerItems.DefaultValues();
+
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

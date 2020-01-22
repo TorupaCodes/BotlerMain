@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="BotlerMain.Views.GroceryPage"
+             NavigationPage.HasBackButton="False"
              Title="Boodschappenlijst">
  
     <ContentPage.ToolbarItems>

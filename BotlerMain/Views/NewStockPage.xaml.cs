@@ -23,6 +23,17 @@ namespace BotlerMain.Views
             Navigation.PopAsync();
 
         }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DB_PATH))
+            {
+                conn.CreateTable<PickerItems>();
+                var PickerItems = conn.Table<PickerItems>().ToList();
+                PickerStock.ItemsSource = PickerItems;
+
+            }
+        }
         private bool CrashCheck()
         {
             bool boolError = false;
@@ -61,7 +72,7 @@ namespace BotlerMain.Views
         }
         private async void Cancel_Clicked(object sender, EventArgs e)
         {
-            var vUpdatedPage = new GroceryPage(); Navigation.InsertPageBefore(vUpdatedPage, this); await Navigation.PopAsync();
+            var vUpdatedPage = new Stockpage(); Navigation.InsertPageBefore(vUpdatedPage, this); await Navigation.PopAsync();
             await Navigation.PopModalAsync();
         }
 
@@ -69,11 +80,13 @@ namespace BotlerMain.Views
         {
             try
             {
+
                 if(!CrashCheck())
                 {
                     Stock stock = new Stock();
-                    stock.Add((String)PickerStock.SelectedItem, Convert.ToInt32(EntryAmount.Text));
-                    string AlertString = PickerStock.SelectedItem + " is " + EntryAmount.Text + " keer  toegevoegd aan de boodschappenlijst!";
+
+                    stock.Add((String)TempFixLabel.Text, Convert.ToInt32(EntryAmount.Text));
+                    string AlertString = TempFixLabel.Text + " is " + EntryAmount.Text + " keer  toegevoegd aan de boodschappenlijst!";
                     DisplayAlert("Success", AlertString, "Terug");
                 }
             } catch (Exception ex) {
@@ -81,6 +94,32 @@ namespace BotlerMain.Views
                 DisplayAlert("Oops", "Er is iets fout gegaan, probeer het nog eens.", "Terug");
             }
         }
-            
+        private void ButtonPicker_Clicked(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(EntryPicker.Text)) return;
+            PickerItems pickerItems = new PickerItems();
+            pickerItems.Add(Name: EntryPicker.Text);
+
+            // Update picker lijst
+
+            using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection((App.DB_PATH)))
+            {
+                connection.CreateTable<PickerItems>();
+                var PickerItems = connection.Table<PickerItems>().ToList();
+                PickerStock.ItemsSource = PickerItems;
+            }
+
+        }
+
+        private async void ButtonResetPicker_Clicked(object sender, EventArgs e)
+        {
+            using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection((App.DB_PATH)))
+            {
+                connection.DropTable<PickerItems>();
+
+                PickerItems pickerItems = new PickerItems();
+                pickerItems.DefaultValues();
+            }
+        }
     }
 }

@@ -13,25 +13,15 @@
 
         
         <StackLayout Spacing="20" Padding="15">
-            <Picker x:Name="PickerGrocery" Title="Boodschappen">
-                <Picker.Items>
-                    <x:String>Appels</x:String>
-                    <x:String>Boter</x:String>
-                    <x:String>Brood</x:String>
-                    <x:String>Ei</x:String>
-                    <x:String>Friet</x:String>
-                    <x:String>Fruit</x:String>
-                    <x:String>Kaas</x:String>
-                    <x:String>Koek</x:String>
-                    <x:String>Macaroni</x:String>
-                    <x:String>Melk</x:String>
-                    <x:String>Pasta</x:String>
-                    <x:String>Appelsap</x:String>
-                    <x:String>Pepernoten</x:String>
-                </Picker.Items>
+            <Picker x:Name="PickerGrocery" Title="Boodschappen" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding Name}">
             </Picker>
+            
             <Entry x:Name="EntryAmount" Placeholder="Aantal" Keyboard="Numeric">
             </Entry>
+            <Label Text="{Binding Source={x:Reference PickerGrocery}, Path=SelectedItem.Name}" IsVisible="False" x:Name="TempFixLabel"></Label>
+            <Entry Placeholder="Nieuwe type boodschap" x:Name="EntryPicker" VerticalOptions="EndAndExpand"></Entry>
+            <Button Text="Reset Picker" Clicked="ButtonResetPicker_Clicked" VerticalOptions="End"></Button>
+            <Button Text="Voeg nieuwe type toe!" Clicked="ButtonPicker_Clicked" VerticalOptions="End"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

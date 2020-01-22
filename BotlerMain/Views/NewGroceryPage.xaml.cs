@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BotlerMain.Views;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -15,6 +16,18 @@ namespace BotlerMain.Views
         public NewGroceryPage()
         {
             InitializeComponent();
+
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DB_PATH))
+            {
+                conn.CreateTable<PickerItems>();
+                var PickerItems = conn.Table<PickerItems>().ToList();
+                PickerGrocery.ItemsSource = PickerItems;
+
+            }
         }
         protected override void OnDisappearing()
         {
@@ -22,6 +35,7 @@ namespace BotlerMain.Views
             Console.WriteLine("NewGroceryPage is verlaten");
             var vUpdatedPage = new GroceryPage(); Navigation.InsertPageBefore(vUpdatedPage, this); Navigation.PopAsync();
             Navigation.PopAsync();
+            NavigationPage.SetHasBackButton(this, false);
 
         }
         private bool CrashCheck()
@@ -60,22 +74,59 @@ namespace BotlerMain.Views
             return boolError;
         }
 
-        private void Add_Clicked(object sender, EventArgs e)
+        private async void Add_Clicked(object sender, EventArgs e)
         {
             try
             {
                 if (!CrashCheck())
                 {
+                    
                     Grocery grocery = new Grocery();
-                    grocery.Add((String)PickerGrocery.SelectedItem, Convert.ToInt32(EntryAmount.Text));
-                    string AlertString = PickerGrocery.SelectedItem + " is " + EntryAmount.Text + " keer  toegevoegd aan de boodschappenlijst!";
-                    DisplayAlert("Success", AlertString, "Terug");
+                    try
+                        var Geselecteerd = (PickerItems)
+                    {
+                        grocery.Add((String)TempFixLabel.Text, Convert.ToInt32(EntryAmount.Text));
+                        string AlertString = TempFixLabel.Text + " is " + EntryAmount.Text + " keer  toegevoegd aan de boodschappenlijst!";
+                        DisplayAlert("Success", AlertString, "Terug");
+                    }
+                    catch (Exception error)
+                    {
+                        Console.WriteLine("C# MACHINE BROKE" + error);
+                    }
                 }
             }
             catch (Exception err)
             {
                 Console.WriteLine("Error is opgevanggen in NewGroceryPage!" + err);
                 DisplayAlert("Oops", "Er is iets fout gegaan, probeer het nog eens.", "Terug");
+            }
+        }
+
+        private void ButtonPicker_Clicked(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(EntryPicker.Text)) return;
+            PickerItems pickerItems = new PickerItems();
+            pickerItems.Add(Name: EntryPicker.Text);
+
+            // Update picker lijst
+
+            using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection((App.DB_PATH)))
+            {
+                connection.CreateTable<PickerItems>();
+                var PickerItems = connection.Table<PickerItems>().ToList();
+                PickerGrocery.ItemsSource = PickerItems;
+            }
+
+        }
+        private void ButtonResetPicker_Clicked(object sender, EventArgs e)
+        {
+            using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection((App.DB_PATH)))
+            {
+                //Console.Writeline(PickerGrocery.SelectedItem.Name);
+                connection.DropTable<PickerItems>(); 
+                PickerItems pickerItems = new PickerItems();
+                pickerItems.DefaultValues();
+
             }
         }
     }

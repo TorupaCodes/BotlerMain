@@ -12,9 +12,12 @@ namespace BotlerMain.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GroceryPage : ContentPage
     {
+
         public GroceryPage()
         {
             InitializeComponent();
+            NavigationPage.SetHasBackButton(this, false);
+
         }
         protected override void OnAppearing()
         {
@@ -25,6 +28,7 @@ namespace BotlerMain.Views
             {
                 conn.CreateTable<Grocery>();
                 var Grocery = conn.Table<Grocery>().ToList();
+
                 GroceryListView.ItemsSource = Grocery;
                 //labCount.Text = Convert.ToString("Er zijn " + Boodschappen.Count + " boodschappen gevonden in het lijstje");
 
@@ -46,16 +50,22 @@ namespace BotlerMain.Views
             base.OnDisappearing();
             Accelerometer.ShakeDetected -= Accelerometer_ShakeDetected;
             Accelerometer.Stop();
+            Console.WriteLine("GroceryPage disappearing");
+            //Navigation.PopAsync();
+
+
         }
         private void Accelerometer_ShakeDetected(object sender, EventArgs e)
         {
             DisplayAlert("Veel speel plezier!", "Sloop de botler niet!", "Oké!");
-            Navigation.PushAsync(new ControllerPage());
+            Navigation.PushModalAsync(new ControllerPage());
         }
 
         private async void Add_Clicked(object sender, EventArgs e)
         {
+            //await Navigation.PushModalAsync(new N());
             await Navigation.PushAsync(new NewGroceryPage());
+
         }
 
         private void Verwijder_Clicked(object sender, EventArgs e)
@@ -77,6 +87,7 @@ namespace BotlerMain.Views
             grocery.Move(Geselecteerd.Id, Geselecteerd.Name, Geselecteerd.Number);
             DisplayAlert("Succes!", Convert.ToString(Geselecteerd.Name) + " is verplaatst", "Breng me terug");
             OnAppearing();
+            
         }
     }
 }

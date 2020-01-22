@@ -6,8 +6,8 @@
        mc:Ignorable="d"
        xmlns:local="clr-namespace:BotlerMain.Views"
        Title="BotlerMain"
-       x:Class="BotlerMain.AppShell">
-
+       x:Class="BotlerMain.AppShell"
+       NavigationPage.HasBackButton="False">
     <!-- 
         Styles and Resources 
     -->
