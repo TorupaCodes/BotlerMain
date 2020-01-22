@@ -31,7 +31,7 @@ namespace BotlerMain.Views
                 conn.CreateTable<PickerItems>();
                 var PickerItems = conn.Table<PickerItems>().ToList();
                 PickerStock.ItemsSource = PickerItems;
-
+                NavigationPage.SetHasBackButton(this, false);
             }
         }
         private bool CrashCheck()
@@ -97,7 +97,7 @@ namespace BotlerMain.Views
                 DisplayAlert("Oops", "Er is iets fout gegaan, probeer het nog eens.", "Terug");
             }
         }
-        private void ButtonPicker_Clicked(object sender, EventArgs e)
+        private void AddPicker_Clicked(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(EntryPicker.Text)) return;
             PickerItems pickerItems = new PickerItems();

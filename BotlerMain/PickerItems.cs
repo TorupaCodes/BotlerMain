@@ -35,7 +35,7 @@ namespace BotlerMain
                         connection.CreateTable<PickerItems>();
                         connection.Insert(pickerItems);
                         var test1 = connection.Table<PickerItems>().Count();
-                        Console.WriteLine(test1 + "DIT IS TEST1");
+                        Console.WriteLine(i + " Dit is toegevoegd");
                     }
                 }
             }

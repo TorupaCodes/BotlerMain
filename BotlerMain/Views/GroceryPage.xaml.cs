@@ -51,7 +51,6 @@ namespace BotlerMain.Views
             Accelerometer.ShakeDetected -= Accelerometer_ShakeDetected;
             Accelerometer.Stop();
             Console.WriteLine("GroceryPage disappearing");
-            //Navigation.PopAsync();
 
 
         }

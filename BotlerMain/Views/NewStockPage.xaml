@@ -19,12 +19,11 @@
                     <x:String>Appels</x:String>
                 </Picker.Items>
             </Picker>
-            <Label Text="{Binding Source={x:Reference PickerStock}, Path=SelectedItem.Name}" IsVisible="False" x:Name="TempFixLabel"></Label>
             <Entry x:Name="EntryAmount" Placeholder="Aantal" Keyboard="Numeric">
             </Entry>
             <Entry Placeholder="Nieuwe type boodschap" x:Name="EntryPicker" VerticalOptions="EndAndExpand"></Entry>
             <Button Text="Reset Picker" Clicked="ButtonResetPicker_Clicked" VerticalOptions="End"></Button>
-            <Button Text="Voeg nieuwe type toe!" Clicked="ButtonPicker_Clicked" VerticalOptions="End"></Button>
+            <Button Text="Voeg nieuwe type toe!" Clicked="AddPicker_Clicked" VerticalOptions="End"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

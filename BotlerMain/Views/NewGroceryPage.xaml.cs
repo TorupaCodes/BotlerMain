@@ -74,7 +74,7 @@ namespace BotlerMain.Views
             return boolError;
         }
 
-        private async void Add_Clicked(object sender, EventArgs e)
+        private void Add_Clicked(object sender, EventArgs e)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace BotlerMain.Views
             }
         }
 
-        private void ButtonPicker_Clicked(object sender, EventArgs e)
+        private void AddPicker_Clicked(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(EntryPicker.Text)) return;
             PickerItems pickerItems = new PickerItems();
@@ -119,7 +119,6 @@ namespace BotlerMain.Views
         {
             using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection((App.DB_PATH)))
             {
-                //Console.Writeline(PickerGrocery.SelectedItem.Name);
                 connection.DropTable<PickerItems>();
                 PickerItems pickerItems = new PickerItems();
                 pickerItems.DefaultValues();
