@@ -38,17 +38,15 @@ namespace BotlerMain.Views
                 // Een variable voor het toevoegen van een  nieuw Recept. 
                 var numberOfRows = connection.Insert(Recipe);
                 // Een string die de naam van het recept toont.
-                string RecipeName = Recipe.Name + " is toegevoegd aan het boodschappenlijstje!";
-                // Als dus numberofrows groter is dan 0 is er iets toegevoegd. (Dus success)
+                string RecipeName = Recipe.Name + " is toegevoegd aan de receptenlijst";
+               
                 if (numberOfRows > 0)
                     DisplayAlert("Gedaan!", RecipeName, "Terug");
                 else
                     DisplayAlert("Fout", "Het recept is niet toegevoegd.", "Terug");
 
 
-                // Er kan maar een connectie tergelijke tijd zijn!
-                // connection.Dispose(); // Dit zorgt er voor dat de connectie weg gaat!!
-                // Maar de using statement doet dat al voor ons.
+
             };
 
 
